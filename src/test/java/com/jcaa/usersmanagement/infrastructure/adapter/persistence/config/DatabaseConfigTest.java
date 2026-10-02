@@ -28,4 +28,18 @@ class DatabaseConfigTest {
             "jdbc:mysql://mysql.example.com:15425/crud_usuarios"
                 + "?sslMode=REQUIRED&serverTimezone=UTC&allowPublicKeyRetrieval=true");
   }
+
+  @Test
+  void shouldBuildJdbcUrlForPostgreSql() {
+    // Arrange
+    final DatabaseConfig config =
+        new DatabaseConfig("aws-0-us-east-1.pooler.supabase.com", 5432, "postgres", "postgres.user", "secret", "REQUIRED");
+
+    // Act
+    final String jdbcUrl = config.buildJdbcUrl();
+
+    // Assert
+    assertThat(jdbcUrl)
+        .isEqualTo("jdbc:postgresql://aws-0-us-east-1.pooler.supabase.com:5432/postgres?sslmode=require");
+  }
 }

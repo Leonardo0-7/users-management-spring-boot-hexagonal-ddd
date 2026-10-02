@@ -5,12 +5,13 @@ services:
     plan: free
     branch: main
     autoDeployTrigger: commit
-    healthCheckPath: /v3/api-docs
     envVars:
+      - key: DB_ENGINE
+        value: postgresql
       - key: DB_HOST
         sync: false
       - key: DB_PORT
-        value: "3306"
+        value: "5432"
       - key: DB_NAME
         value: crud_usuarios
       - key: DB_USERNAME
